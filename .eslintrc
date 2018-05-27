@@ -4,5 +4,8 @@
     "browser": true,
     "es6": true,
     "jest": true
+  },
+  "rules": {
+    "import/prefer-default-export": 0
   }
 }
