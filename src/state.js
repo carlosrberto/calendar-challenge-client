@@ -9,7 +9,7 @@ export const filter = (state, fn) => all(state).filter(fn);
 export const get = (state, id) => state.all[id];
 
 export const create = (prevState, payload) => {
-  const nextId = getId.next().value;
+  const nextId = getId.next();
   const object = {
     id: nextId,
     ...payload,

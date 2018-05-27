@@ -1,8 +1,11 @@
-export const idGen = function* idGen() {
+export const idGen = () => {
   let i = 0;
-  while (true) {
-    yield i += 1;
-  }
+  return {
+    next() {
+      i += 1;
+      return i;
+    },
+  };
 };
 
 export const delay = (ms = 200) =>

@@ -3,10 +3,10 @@ import { idGen, delay } from './utils';
 describe('idGen', () => {
   it('should return sequencial numbers', () => {
     const id = idGen();
-    expect(id.next().value).toEqual(1);
-    expect(id.next().value).toEqual(2);
-    expect(id.next().value).toEqual(3);
-    expect(id.next().value).toEqual(4);
+    expect(id.next()).toEqual(1);
+    expect(id.next()).toEqual(2);
+    expect(id.next()).toEqual(3);
+    expect(id.next()).toEqual(4);
   });
 });
 
