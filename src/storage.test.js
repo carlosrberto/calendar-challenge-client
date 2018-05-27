@@ -9,13 +9,17 @@ describe('setStorage', () => {
 
   it('should update localStorage with provided state', () => {
     const initialState = {
+      all: {},
+      byId: [],
+    };
+    const nextState = {
       all: {
         10: { id: 10, title: 'Task 1' },
       },
       byId: [10],
     };
-    setStorage(STORAGE_KEY, initialState);
-    expect(getStorage(STORAGE_KEY)).toEqual(initialState);
+    setStorage(STORAGE_KEY, nextState);
+    expect(getStorage(STORAGE_KEY, initialState)).toEqual(nextState);
   });
 });
 
@@ -29,6 +33,6 @@ describe('getStorage', () => {
       all: {},
       byId: [],
     };
-    expect(getStorage(STORAGE_KEY)).toEqual(initialState);
+    expect(getStorage(STORAGE_KEY, initialState)).toEqual(initialState);
   });
 });

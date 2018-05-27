@@ -1,9 +1,4 @@
-export const initialState = {
-  all: {},
-  byId: [],
-};
-
-export const getStorage = (key, defaultState = initialState) => {
+export const getStorage = (key, defaultState) => {
   try {
     const state = JSON.parse(localStorage.getItem(key));
     return state || defaultState;
