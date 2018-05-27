@@ -10,6 +10,14 @@ export const idGen = () => {
   };
 };
 
+export const isValidDate = date =>
+  (/^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/)
+    .test(date);
+
+export const isValidTime = time =>
+  (/([01][0-9]|2[0-3]):[0-5][0-9]/)
+    .test(time);
+
 export const delay = (ms = 200) =>
   new Promise(resolve => setTimeout(resolve, ms));
 
