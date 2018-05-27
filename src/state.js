@@ -9,7 +9,7 @@ export const filter = (state, fn) => all(state).filter(fn);
 export const get = (state, id) => state.all[id];
 
 export const create = (prevState, payload) => {
-  const validation = validatePayload(payload);
+  const validation = validatePayload(payload, true);
 
   if (!validation.valid) {
     throw new StateError(validation.message);
@@ -18,6 +18,7 @@ export const create = (prevState, payload) => {
   const nextId = getId.next();
   const object = {
     ...payload,
+    timestamp: Date.now(),
     id: nextId,
   };
 

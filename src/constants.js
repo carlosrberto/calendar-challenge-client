@@ -4,3 +4,4 @@ export const INITIAL_STATE = {
   byId: [],
 };
 export const PAYLOAD_KEYS = ['id', 'title', 'timestamp', 'date', 'start_time', 'end_time'];
+export const PAYLOAD_REQUIRED_KEYS = ['title', 'date', 'start_time', 'end_time'];

@@ -5,7 +5,7 @@ export default {
   output: {
     name: 'events',
     file: 'lib/index.js',
-    format: 'umd',
+    format: 'iife',
   },
   plugins: [
     babel(),

@@ -5,15 +5,40 @@ describe('create', () => {
   it('should return state with the provided payload', () => {
     const initialState = {
       all: {
-        10: { id: 10, title: 'Task 1' },
+        10: {
+          id: 10,
+          title: 'Task 1',
+          date: '10/05/2020',
+          start_time: '10:00',
+          end_time: '10:30',
+        },
       },
       byId: [10],
     };
-    const next = create(initialState, { title: 'Task 2' });
+    const next = create(initialState, {
+      title: 'Task 2',
+      date: '10/05/2020',
+      start_time: '11:00',
+      end_time: '11:30',
+    });
+
     expect(next.state).toEqual({
       all: {
-        10: { id: 10, title: 'Task 1' },
-        1: { id: 1, title: 'Task 2' },
+        10: {
+          id: 10,
+          title: 'Task 1',
+          date: '10/05/2020',
+          start_time: '10:00',
+          end_time: '10:30',
+        },
+        1: {
+          id: 1,
+          title: 'Task 2',
+          date: '10/05/2020',
+          start_time: '11:00',
+          end_time: '11:30',
+          timestamp: next.object.timestamp,
+        },
       },
       byId: [10, 1],
     });
