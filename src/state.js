@@ -1,4 +1,4 @@
-import { idGen } from './utils';
+import { idGen, validatePayload, StateError } from './utils';
 
 const getId = idGen();
 
@@ -9,10 +9,16 @@ export const filter = (state, fn) => all(state).filter(fn);
 export const get = (state, id) => state.all[id];
 
 export const create = (prevState, payload) => {
+  const validation = validatePayload(payload);
+
+  if (!validation.valid) {
+    throw new StateError(validation.message);
+  }
+
   const nextId = getId.next();
   const object = {
-    id: nextId,
     ...payload,
+    id: nextId,
   };
 
   const state = {

@@ -1,4 +1,5 @@
 import { all, filter, get, update, create, remove } from './state';
+import { StateError } from './utils';
 
 describe('create', () => {
   it('should return state with the provided payload', () => {
@@ -16,6 +17,19 @@ describe('create', () => {
       },
       byId: [10, 1],
     });
+  });
+
+  it('should throw error when payload is invalid', () => {
+    const initialState = {
+      all: {
+        10: { id: 10, title: 'Task 1' },
+      },
+      byId: [10],
+    };
+
+    expect(() => {
+      create(initialState, { customField: 'Custom value' });
+    }).toThrow(StateError);
   });
 });
 
