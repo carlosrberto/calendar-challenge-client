@@ -2,7 +2,7 @@
 
 JavaScript client for iClinic Front-End Challenges.
 
-This clients simulates **api calls**, and a every method returns a `Promise` that **resolves** or **reject** after some time.
+This clients simulates **api calls**, and a every method returns a `Promise` that **resolves** or **reject** after some time. All data is saved using `LocalStorage`.
 
 ## Get started
 
@@ -77,7 +77,7 @@ events.create(payload).then(event => {
 
 #### `events.update(<Object payload>)`
 
-Update a event, **id** is **required**
+Update event, **id** is **required**
 
 ```javascript
 const payload = {
@@ -94,7 +94,7 @@ events.update(payload).then(event => {
 
 #### `events.remove(<String id>)`
 
-Delete a event
+Delete event
 
 ```javascript
 events.remove('gh34g4').then(event => {
