@@ -36,6 +36,12 @@ export const create = (prevState, payload) => {
 };
 
 export const update = (prevState, payload) => {
+  const prevObject = prevState.all[payload.id];
+
+  if (!prevObject) {
+    throw new ValidationError(`entry with id: ${payload.id} not found`);
+  }
+
   const validation = validatePayload(payload);
 
   if (!validation.valid) {
