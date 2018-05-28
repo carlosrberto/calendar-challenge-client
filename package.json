@@ -1,8 +1,13 @@
 {
   "name": "@iclinic/calendar-challenge-client",
   "version": "0.1.0",
+  "description": "JavaScript client for iClinic Front-End Challenges",
   "main": "lib/index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iclinic/calendar-challenge-client.git"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-jest": "^22.4.3",
