@@ -5,15 +5,15 @@ describe('create', () => {
   it('should return state with the provided payload', () => {
     const initialState = {
       all: {
-        10: {
-          id: 10,
+        ds6d5s: {
+          id: 'ds6d5s',
           title: 'Task 1',
           date: '10/05/2020',
           start_time: '10:00',
           end_time: '10:30',
         },
       },
-      byId: [10],
+      byId: ['ds6d5s'],
     };
     const next = create(initialState, {
       title: 'Task 2',
@@ -22,17 +22,19 @@ describe('create', () => {
       end_time: '11:30',
     });
 
+    const nextId = next.object.id;
+
     expect(next.state).toEqual({
       all: {
-        10: {
-          id: 10,
+        ds6d5s: {
+          id: 'ds6d5s',
           title: 'Task 1',
           date: '10/05/2020',
           start_time: '10:00',
           end_time: '10:30',
         },
-        1: {
-          id: 1,
+        [nextId]: {
+          id: nextId,
           title: 'Task 2',
           date: '10/05/2020',
           start_time: '11:00',
@@ -40,16 +42,16 @@ describe('create', () => {
           timestamp: next.object.timestamp,
         },
       },
-      byId: [10, 1],
+      byId: ['ds6d5s', nextId],
     });
   });
 
   it('should throw error when payload is invalid', () => {
     const initialState = {
       all: {
-        10: { id: 10, title: 'Task 1' },
+        ds6d5s: { id: 'ds6d5s', title: 'Task 1' },
       },
-      byId: [10],
+      byId: ['ds6d5s'],
     };
 
     expect(() => {
@@ -62,18 +64,18 @@ describe('update', () => {
   it('should update and return news state with the provided payload', () => {
     const initialState = {
       all: {
-        10: { id: 10, title: 'Task 1' },
-        1: { id: 1, title: 'Task 2' },
+        ds6d5s: { id: 'ds6d5s', title: 'Task 1' },
+        hdsada: { id: 'hdsada', title: 'Task 2' },
       },
-      byId: [10, 1],
+      byId: ['ds6d5s', 'hdsada'],
     };
-    const next = update(initialState, { id: 1, title: 'Task 2 Edited' });
+    const next = update(initialState, { id: 'hdsada', title: 'Task 2 Edited' });
     expect(next.state).toEqual({
       all: {
-        10: { id: 10, title: 'Task 1' },
-        1: { id: 1, title: 'Task 2 Edited' },
+        ds6d5s: { id: 'ds6d5s', title: 'Task 1' },
+        hdsada: { id: 'hdsada', title: 'Task 2 Edited' },
       },
-      byId: [10, 1],
+      byId: ['ds6d5s', 'hdsada'],
     });
   });
 });
@@ -82,17 +84,17 @@ describe('remove', () => {
   it('should remote item and return news state', () => {
     const initialState = {
       all: {
-        10: { id: 10, title: 'Task 1' },
-        1: { id: 1, title: 'Task 2' },
+        ds6d5s: { id: 'ds6d5s', title: 'Task 1' },
+        hdsada: { id: 'hdsada', title: 'Task 2' },
       },
-      byId: [10, 1],
+      byId: ['ds6d5s', 'hdsada'],
     };
-    const next = remove(initialState, 1);
+    const next = remove(initialState, 'hdsada');
     expect(next.state).toEqual({
       all: {
-        10: { id: 10, title: 'Task 1' },
+        ds6d5s: { id: 'ds6d5s', title: 'Task 1' },
       },
-      byId: [10],
+      byId: ['ds6d5s'],
     });
   });
 });

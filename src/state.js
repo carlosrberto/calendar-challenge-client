@@ -1,6 +1,5 @@
-import { idGen, validatePayload, StateError } from './utils';
-
-const getId = idGen();
+import uid from 'uid';
+import { validatePayload, ValidationError } from './utils';
 
 export const all = state => state.byId.map(id => state.all[id]);
 
@@ -12,10 +11,10 @@ export const create = (prevState, payload) => {
   const validation = validatePayload(payload, true);
 
   if (!validation.valid) {
-    throw new StateError(validation.message);
+    throw new ValidationError(validation.message);
   }
 
-  const nextId = getId.next();
+  const nextId = uid();
   const object = {
     ...payload,
     timestamp: Date.now(),
@@ -37,6 +36,12 @@ export const create = (prevState, payload) => {
 };
 
 export const update = (prevState, payload) => {
+  const validation = validatePayload(payload);
+
+  if (!validation.valid) {
+    throw new ValidationError(validation.message);
+  }
+
   const object = {
     ...prevState.all[payload.id],
     ...payload,
@@ -59,8 +64,15 @@ export const update = (prevState, payload) => {
 };
 
 export const remove = (prevState, id) => {
+  const prevObject = prevState.all[id];
+
+  if (!prevObject) {
+    throw new ValidationError(`entry with id: ${id} not found`);
+  }
+
   const nextAll = { ...prevState.all };
   const object = { ...prevState.all[id] };
+
   delete nextAll[id];
   const state = {
     all: {

@@ -34,5 +34,8 @@
     "precommit": "npm run lint && npm run test",
     "bump": "bump --prompt --commit --tag --push",
     "prepublishOnly": "npm run build && npm run bump"
+  },
+  "dependencies": {
+    "uid": "^0.0.2"
   }
 }
